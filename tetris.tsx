@@ -492,9 +492,9 @@ export default function Tetris() {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-background ${geist.className}`}>
-      <div className="mb-8">
-        <h1 className="text-7xl font-black tracking-tight drop-shadow-lg text-center">
+    <div className={`flex flex-col items-center justify-center min-h-screen p-2 bg-background ${geist.className}`}>
+      <div className="mb-3">
+        <h1 className="text-6xl font-black tracking-tight drop-shadow-lg text-center">
           <span style={{ color: '#ff0000' }}>w</span>
           <span style={{ color: '#ff9900' }}>o</span>
           <span style={{ color: '#ffff00' }}>i</span>
@@ -504,8 +504,8 @@ export default function Tetris() {
         </h1>
       </div>
 
-      <div className="flex gap-8 items-start">
-        <div className="flex flex-col gap-4">
+      <div className="flex gap-4 items-start">
+        <div className="flex flex-col gap-2">
           <div className="bg-card p-3 rounded-lg shadow-lg border border-border">
             <h3 className="text-lg font-bold mb-2 text-center text-secondary">Hold</h3>
             <div className="w-20 h-16 rounded flex items-center justify-center bg-muted">
