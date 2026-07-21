@@ -494,7 +494,7 @@ export default function Tetris() {
   return (
     <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-background ${geist.className}`}>
       <div className="mb-8">
-        <Image src="/tetris-logo.png" alt="Tetris Logo" width={300} height={80} priority className="drop-shadow-lg" />
+        <Image src="/tetris-logo.png" alt="kcolb Logo" width={300} height={80} priority className="drop-shadow-lg" />
       </div>
 
       <div className="flex gap-8 items-start">
