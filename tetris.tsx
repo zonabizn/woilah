@@ -488,51 +488,51 @@ export default function Tetris() {
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-gray-200 ${geist.className}`}>
+    <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-background ${geist.className}`}>
       <div className="mb-8">
         <Image src="/tetris-logo.png" alt="Tetris Logo" width={300} height={80} priority className="drop-shadow-lg" />
       </div>
 
       <div className="flex gap-8 items-start">
         <div className="flex flex-col gap-4">
-          <div className="bg-white p-3 rounded-lg shadow-lg">
-            <h3 className="text-lg font-bold mb-2 text-center">Hold</h3>
-            <div className="w-20 h-16 rounded flex items-center justify-center bg-slate-200">
+          <div className="bg-card p-3 rounded-lg shadow-lg border border-border">
+            <h3 className="text-lg font-bold mb-2 text-center text-secondary">Hold</h3>
+            <div className="w-20 h-16 rounded flex items-center justify-center bg-muted">
               {renderPiece(heldPiece, 15)}
             </div>
           </div>
 
-          <div className="bg-white p-3 rounded-lg shadow-lg">
+          <div className="bg-card p-3 rounded-lg shadow-lg border border-border">
             <div className="space-y-2">
               <div>
-                <h4 className="font-bold">Highscore</h4>
-                <div className="p-1 rounded text-center bg-slate-200 text-black">{highScore}</div>
+                <h4 className="font-bold text-foreground">Highscore</h4>
+                <div className="p-1 rounded text-center bg-muted text-foreground">{highScore}</div>
               </div>
               <div>
-                <h4 className="font-bold">Level</h4>
-                <div className="p-1 rounded text-center bg-slate-200 text-black">{level}</div>
+                <h4 className="font-bold text-foreground">Level</h4>
+                <div className="p-1 rounded text-center bg-muted text-foreground">{level}</div>
               </div>
               <div>
-                <h4 className="font-bold">Score</h4>
-                <div className="p-1 rounded text-center bg-slate-200 text-black">{score}</div>
+                <h4 className="font-bold text-foreground">Score</h4>
+                <div className="p-1 rounded text-center bg-muted text-foreground">{score}</div>
               </div>
               <div>
-                <h4 className="font-bold">Lines</h4>
-                <div className="p-1 rounded text-center bg-slate-200 text-black">{lines}</div>
+                <h4 className="font-bold text-foreground">Lines</h4>
+                <div className="p-1 rounded text-center bg-muted text-foreground">{lines}</div>
               </div>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
+          <div className="bg-card p-4 rounded-lg shadow-lg border border-border">
             <div
-              className="grid bg-gray-300"
+              className="grid bg-muted"
               style={{
                 gridTemplateColumns: `repeat(${BOARD_WIDTH}, 1fr)`,
                 width: `${BOARD_WIDTH * 25}px`,
                 height: `${BOARD_HEIGHT * 25}px`,
-                border: "1px solid #e5e7eb",
+                border: "2px solid hsl(280, 100%, 50%)",
               }}
             >
               {Array.from({ length: BOARD_HEIGHT }, (_, y) =>
@@ -545,8 +545,8 @@ export default function Tetris() {
                         scale: completedRows.includes(y) ? 1.1 : 1,
                       }}
                       transition={{ duration: 0.3 }}
-                      className={`w-6 h-6 ${renderCell(x, y) ? `bg-${renderCell(x, y)}` : "bg-gray-100"}`}
-                      style={{ border: "1px solid #e5e7eb" }}
+                      className={`w-6 h-6 ${renderCell(x, y) ? `bg-${renderCell(x, y)}` : "bg-muted-foreground opacity-20"}`}
+                      style={{ border: "1px solid hsl(240, 6%, 20%)" }}
                     />
                   </AnimatePresence>
                 )),
@@ -555,17 +555,17 @@ export default function Tetris() {
           </div>
 
           <div className="h-12 flex items-center justify-center mt-4">
-            {gameOver && <div className="text-2xl font-bold text-red-600">Game Over!</div>}
-            {isPaused && !gameOver && <div className="text-2xl font-bold text-blue-600">Paused</div>}
+            {gameOver && <div className="text-2xl font-bold text-orange-500">Game Over!</div>}
+            {isPaused && !gameOver && <div className="text-2xl font-bold text-cyan-400">Paused</div>}
           </div>
         </div>
 
         <div className="flex flex-col gap-4">
-          <div className="bg-white p-3 rounded-lg shadow-lg">
-            <h3 className="text-lg font-bold mb-2 text-center">Next</h3>
+          <div className="bg-card p-3 rounded-lg shadow-lg border border-border">
+            <h3 className="text-lg font-bold mb-2 text-center text-secondary">Next</h3>
             <div className="space-y-3">
               {nextPieces.slice(0, 3).map((piece, index) => (
-                <div key={index} className="w-20 h-16 rounded flex items-center justify-center bg-slate-200">
+                <div key={index} className="w-20 h-16 rounded flex items-center justify-center bg-muted">
                   {renderPiece(piece, 15)}
                 </div>
               ))}
@@ -575,38 +575,38 @@ export default function Tetris() {
       </div>
 
       <div className="fixed bottom-4 left-4 right-4 flex justify-between items-end">
-        <div className="bg-white p-4 rounded-lg shadow-lg">
-          <h3 className="text-lg font-bold mb-3 text-center text-gray-800">Controls</h3>
+        <div className="bg-card p-4 rounded-lg shadow-lg border border-border">
+          <h3 className="text-lg font-bold mb-3 text-center text-secondary">Controls</h3>
           <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
             <div className="flex items-center gap-2">
-              <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono min-w-[60px] flex items-center justify-center">
+              <div className="bg-muted px-2 py-1 rounded text-xs font-mono min-w-[60px] flex items-center justify-center">
                 <Image src="/arrow-keys.png" alt="Arrow Keys" width={40} height={30} className="object-contain" />
               </div>
-              <span className="text-gray-700">Move/Rotate</span>
+              <span className="text-foreground">Move/Rotate</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center">SPACE</div>
-              <span className="text-gray-700">Hard drop</span>
+              <div className="bg-muted px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center text-foreground">SPACE</div>
+              <span className="text-foreground">Hard drop</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center">H</div>
-              <span className="text-gray-700">Hold piece</span>
+              <div className="bg-muted px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center text-foreground">H</div>
+              <span className="text-foreground">Hold piece</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="bg-gray-100 px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center">P</div>
-              <span className="text-gray-700">Pause</span>
+              <div className="bg-muted px-2 py-1 rounded text-xs font-mono min-w-[60px] text-center text-foreground">P</div>
+              <span className="text-foreground">Pause</span>
             </div>
           </div>
         </div>
 
         <div className="flex gap-2">
-          <Button onClick={togglePause} size="sm" className="bg-gray-800 hover:bg-gray-700">
+          <Button onClick={togglePause} size="sm" className="bg-primary hover:bg-purple-600 text-primary-foreground">
             {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
           </Button>
-          <Button onClick={toggleMusic} size="sm" className="bg-gray-800 hover:bg-gray-700">
+          <Button onClick={toggleMusic} size="sm" className="bg-secondary hover:bg-cyan-500 text-secondary-foreground">
             {isMusicPlaying ? <Music className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
           </Button>
-          <Button onClick={resetGame} size="sm" className="bg-gray-800 hover:bg-gray-700">
+          <Button onClick={resetGame} size="sm" className="bg-accent hover:bg-orange-600 text-accent-foreground">
             {gameOver ? "Play Again" : "Reset"}
           </Button>
         </div>
