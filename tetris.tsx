@@ -10,48 +10,48 @@ import Image from "next/image"
 const geist = Geist({ subsets: ["latin"] })
 
 const TETROMINOS = {
-  I: { shape: [[1, 1, 1, 1]], color: "cyan-500" },
+  I: { shape: [[1, 1, 1, 1]], color: "#00ffff" },
   J: {
     shape: [
       [1, 0, 0],
       [1, 1, 1],
     ],
-    color: "blue-500",
+    color: "#0066ff",
   },
   L: {
     shape: [
       [0, 0, 1],
       [1, 1, 1],
     ],
-    color: "orange-500",
+    color: "#ff9900",
   },
   O: {
     shape: [
       [1, 1],
       [1, 1],
     ],
-    color: "yellow-500",
+    color: "#ffff00",
   },
   S: {
     shape: [
       [0, 1, 1],
       [1, 1, 0],
     ],
-    color: "green-500",
+    color: "#00ff00",
   },
   T: {
     shape: [
       [0, 1, 0],
       [1, 1, 1],
     ],
-    color: "purple-500",
+    color: "#bb00ff",
   },
   Z: {
     shape: [
       [1, 1, 0],
       [0, 1, 1],
     ],
-    color: "red-500",
+    color: "#ff0000",
   },
 }
 
@@ -474,8 +474,12 @@ export default function Tetris() {
           row.map((cell, x) => (
             <div
               key={`${y}-${x}`}
-              className={`${cell ? `bg-${tetromino.color}` : "bg-transparent"}`}
-              style={{ width: size, height: size }}
+              style={{
+                width: size,
+                height: size,
+                backgroundColor: cell ? tetromino.color : "transparent",
+                border: cell ? `1px solid rgba(255, 255, 255, 0.3)` : "none",
+              }}
             />
           )),
         )}
@@ -536,20 +540,27 @@ export default function Tetris() {
               }}
             >
               {Array.from({ length: BOARD_HEIGHT }, (_, y) =>
-                Array.from({ length: BOARD_WIDTH }, (_, x) => (
-                  <AnimatePresence key={`${y}-${x}`}>
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        opacity: completedRows.includes(y) ? 0 : 1,
-                        scale: completedRows.includes(y) ? 1.1 : 1,
-                      }}
-                      transition={{ duration: 0.3 }}
-                      className={`w-6 h-6 ${renderCell(x, y) ? `bg-${renderCell(x, y)}` : "bg-muted-foreground opacity-20"}`}
-                      style={{ border: "1px solid hsl(240, 6%, 20%)" }}
-                    />
-                  </AnimatePresence>
-                )),
+                Array.from({ length: BOARD_WIDTH }, (_, x) => {
+                  const cellColor = renderCell(x, y)
+                  return (
+                    <AnimatePresence key={`${y}-${x}`}>
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          opacity: completedRows.includes(y) ? 0 : 1,
+                          scale: completedRows.includes(y) ? 1.1 : 1,
+                        }}
+                        transition={{ duration: 0.3 }}
+                        style={{
+                          width: 24,
+                          height: 24,
+                          backgroundColor: cellColor || "rgba(100, 100, 100, 0.2)",
+                          border: "1px solid hsl(240, 6%, 20%)",
+                        }}
+                      />
+                    </AnimatePresence>
+                  )
+                }),
               )}
             </div>
           </div>
