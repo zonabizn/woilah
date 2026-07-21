@@ -494,7 +494,14 @@ export default function Tetris() {
   return (
     <div className={`flex flex-col items-center justify-center min-h-screen p-4 bg-background ${geist.className}`}>
       <div className="mb-8">
-        <Image src="/tetris-logo.png" alt="kcolb Logo" width={300} height={80} priority className="drop-shadow-lg" />
+        <h1 className="text-7xl font-black tracking-tight drop-shadow-lg text-center">
+          <span style={{ color: '#ff0000' }}>w</span>
+          <span style={{ color: '#ff9900' }}>o</span>
+          <span style={{ color: '#ffff00' }}>i</span>
+          <span style={{ color: '#00ff00' }}>l</span>
+          <span style={{ color: '#00ffff' }}>a</span>
+          <span style={{ color: '#bb00ff' }}>h</span>
+        </h1>
       </div>
 
       <div className="flex gap-8 items-start">
